@@ -1,0 +1,38 @@
+public class ProductsController : Controller
+{
+    private MyDbContext db = new MyDbContext();
+
+    public ActionResult Index(int? categoryId, int? page)
+    {
+        int pageSize = 10;
+        int pageNumber = (page ?? 1);
+        var products = db.Products.Include(p => p.Category);
+
+        if (categoryId != null)
+        {
+            products = products.Where(p => p.CategoryId == categoryId);
+        }
+
+        return View(products.OrderBy(p => p.Id).ToPagedList(pageNumber, pageSize));
+    }
+
+    public ActionResult Create()
+    {
+        ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name");
+        return View();
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public ActionResult Create(Product product)
+    {
+        if (ModelState.IsValid)
+        {
+            db.Products.Add(product);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", product.CategoryId);
+        return View(product);
+    }

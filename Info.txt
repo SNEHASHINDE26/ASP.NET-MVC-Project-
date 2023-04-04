@@ -1,0 +1,30 @@
+MyProject/
+├── Controllers/
+│   ├── CategoryController.cs
+│   └── ProductController.cs
+├── Models/
+│   ├── Category.cs
+│   └── Product.cs
+├── Views/
+│   ├── Category/
+│   │   ├── Index.cshtml
+│   │   ├── Create.cshtml
+│   │   ├── Edit.cshtml
+│   │   └── Delete.cshtml
+│   └── Product/
+│       ├── Index.cshtml
+│       ├── Create.cshtml
+│       ├── Edit.cshtml
+│       └── Delete.cshtml
+├── App_Start/
+│   ├── FilterConfig.cs
+│   ├── RouteConfig.cs
+│   └── WebApiConfig.cs
+├── Scripts/
+│   └── jquery.dataTables.min.js
+├── Content/
+│   └── jquery.dataTables.min.css
+├── Global.asax
+├── Global.asax.cs
+├── Packages.config
+├── Web.config
